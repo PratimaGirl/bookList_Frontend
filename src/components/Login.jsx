@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { TextField, Button, Typography, Card, Box } from "@mui/material";
+import { TextField, Button, Typography, Card, Box, CircularProgress } from "@mui/material";
 import { loginUser } from "../redux/auth/authActions";
 import "./../styles/Auth.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }, navigate));
+    setLoading(true);
+    try {
+      await dispatch(loginUser({ email, password }, navigate));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,6 +37,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="auth-input"
+            disabled={loading}
           />
           <TextField
             label="Password"
@@ -40,10 +47,23 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="auth-input"
+            disabled={loading}
           />
-          <Button variant="contained" color="primary" fullWidth type="submit">
-            Login
-          </Button>
+          <Box className="auth-loader-box">
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Login"
+              )}
+            </Button>
+          </Box>
         </form>
         <Typography variant="body2" className="auth-text">
           Don't have an account? <Link to="/register">Register here</Link>

@@ -13,7 +13,13 @@ import {
   TablePagination,
   Button,
   TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
 } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 import "./../styles/BookList.css";
 import { config } from "../config/config";
 
@@ -24,6 +30,8 @@ const BookList = () => {
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
   const [currentPage, setCurrentPage] = useState(0);
   const [perPageCount, setPerPageCount] = useState(5);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [currentBook, setCurrentBook] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -76,6 +84,44 @@ const BookList = () => {
   const handleRowsPerPageChange = (event) => {
     setPerPageCount(parseInt(event.target.value, 10));
     setCurrentPage(0);
+  };
+
+  const handleDelete = (bookId) => {
+    if (window.confirm("Are you sure you want to delete this book?")) {
+      axios
+        .delete(`http://localhost:5000/api/books/${bookId}`)
+        .then(() => {
+          setBooks(books.filter((book) => book._id !== bookId));
+        })
+        .catch((error) => console.error("Error deleting book:", error));
+    }
+  };
+
+  const handleEditClick = (book) => {
+    setCurrentBook(book);
+    setIsEditModalOpen(true);
+  };
+
+  const handleEditSave = () => {
+    axios
+      .put(`http://localhost:5000/api/books/${currentBook._id}`, {
+        title: currentBook.title,
+        author: currentBook.author,
+      })
+      .then((response) => {
+        const updatedBooks = books.map((book) =>
+          book._id === currentBook._id ? response.data : book
+        );
+        setBooks(updatedBooks);
+        setFilteredBooks(updatedBooks);
+        setIsEditModalOpen(false);
+      })
+      .catch((error) => console.error("Error updating book:", error));
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+    setCurrentBook(null);
   };
 
   const currentBooks = filteredBooks.slice(
@@ -132,12 +178,13 @@ const BookList = () => {
                       : "↓"
                     : ""}
                 </TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {currentBooks.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={3}>
+                  <TableCell colSpan={4}>
                     No books found. Add some books to see them here!
                   </TableCell>
                 </TableRow>
@@ -149,6 +196,20 @@ const BookList = () => {
                     </TableCell>
                     <TableCell>{book.title}</TableCell>
                     <TableCell>{book.author}</TableCell>
+                    <TableCell>
+                      <IconButton
+                        color="primary"
+                        onClick={() => handleEditClick(book)}
+                      >
+                        <Edit />
+                      </IconButton>
+                      <IconButton
+                        color="secondary"
+                        onClick={() => handleDelete(book._id)}
+                      >
+                        <Delete />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 ))
               )}
@@ -166,6 +227,41 @@ const BookList = () => {
           onRowsPerPageChange={handleRowsPerPageChange}
         />
       </main>
+
+      {/* Edit Modal */}
+      {isEditModalOpen && (
+        <Dialog open={isEditModalOpen} onClose={handleEditModalClose}>
+          <DialogTitle>Edit Book</DialogTitle>
+          <DialogContent>
+            <TextField
+              label="Title"
+              fullWidth
+              margin="dense"
+              value={currentBook.title}
+              onChange={(e) =>
+                setCurrentBook({ ...currentBook, title: e.target.value })
+              }
+            />
+            <TextField
+              label="Author"
+              fullWidth
+              margin="dense"
+              value={currentBook.author}
+              onChange={(e) =>
+                setCurrentBook({ ...currentBook, author: e.target.value })
+              }
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleEditModalClose} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={handleEditSave} color="primary">
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </div>
   );
 };
