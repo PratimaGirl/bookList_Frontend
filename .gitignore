@@ -6,25 +6,8 @@
 /git
 /build
 
-# testing
-/coverage
-/git
-/build
-
 # Ignore Visual Studio Code settings
 /.vscode
-
-# production
-/build
-.env
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env
 
 # Ignore log files
 /logs/
