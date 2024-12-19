@@ -2,15 +2,21 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 .env
+/git
+/build
 
 # testing
 /coverage
+/git
+/build
+
+# Ignore Visual Studio Code settings
+/.vscode
 
 # production
 /build
+.env
 
 # misc
 .DS_Store
@@ -18,6 +24,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+
+# Ignore log files
+/logs/
+*.log
 
 npm-debug.log*
 yarn-debug.log*
