@@ -1,56 +1,15 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// import "./../styles/AddBookForm.css";
-
-// const AddBookForm = () => {
-//   const [title, setTitle] = useState("");
-//   const [author, setAuthor] = useState("");
-//   const navigate = useNavigate();
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     // Post the book to the API
-//     axios
-//       .post("http://localhost:5000/api/books", { title, author })
-//       .then(() => {
-//         setTitle("");
-//         setAuthor("");
-//         navigate("/dashboard"); // Navigate back to dashboard
-//       })
-//       .catch((error) => console.error("Error adding book:", error));
-//   };
-
-//   return (
-//     <div className="add-book-container">
-//       <h2>Add a New Book</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           type="text"
-//           placeholder="Book Title"
-//           value={title}
-//           onChange={(e) => setTitle(e.target.value)}
-//           required
-//         />
-//         <input
-//           type="text"
-//           placeholder="Author Name"
-//           value={author}
-//           onChange={(e) => setAuthor(e.target.value)}
-//           required
-//         />
-//         <button type="submit">Add Book</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default AddBookForm;
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  TextField,
+  Typography,
+  Card,
+  CardContent,
+  Box,
+} from "@mui/material";
+import { config } from "../config/config";
 import "./../styles/AddBookForm.css";
 
 const AddBookForm = () => {
@@ -58,44 +17,67 @@ const AddBookForm = () => {
   const [author, setAuthor] = useState("");
   const navigate = useNavigate();
 
-  // Get userId from localStorage
   const userId = localStorage.getItem("userId");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Post the book to the API
     axios
-      .post("http://localhost:5000/api/books", { title, author, userId }) // Include userId
+      .post(config.apiBaseUrl + "/api/books", { title, author, userId })
       .then(() => {
         setTitle("");
         setAuthor("");
-        navigate("/dashboard");
+        navigate("/booklist");
       })
       .catch((error) => console.error("Error adding book:", error));
   };
 
+  const handleCloseButton = () => {
+    navigate("/booklist");
+  };
+
   return (
-    <div className="add-book-container">
-      <h2>Add a New Book</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Book Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Author Name"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-        />
-        <button type="submit">Add Book</button>
-      </form>
-    </div>
+    <Box className="add-book-container">
+      <Card className="add-book-card">
+        <CardContent>
+          <Typography variant="h4" className="add-book-title">
+            Add a New Book
+          </Typography>
+          <form onSubmit={handleSubmit} className="add-book-form">
+            <TextField
+              label="Book Title"
+              variant="outlined"
+              fullWidth
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="add-book-input"
+              required
+            />
+            <TextField
+              label="Author Name"
+              variant="outlined"
+              fullWidth
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              className="add-book-input"
+              required
+            />
+            <Box className="add-book-buttons">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleCloseButton}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Add Book
+              </Button>
+            </Box>
+          </form>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

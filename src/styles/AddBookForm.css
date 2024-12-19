@@ -1,88 +1,62 @@
-/* AddBookForm.css */
-
 .add-book-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 96vh;
-  /* background: linear-gradient(135deg, #e3f2fd, #bbdefb); */
   background-image: url("https://img.freepik.com/premium-photo/search-bar-icon-search-3d-render-minimal-design-multicolor-background_41204-14142.jpg?semt=ais_hybrid");
   background-size: cover;
-  font-family: 'Arial', sans-serif;
+  background-position: center;
   padding: 20px;
 }
 
-.add-book-container h2 {
-  font-size: 32px;
-  color: #007bff;
+.add-book-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.add-book-title {
+  text-align: center;
   margin-bottom: 20px;
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  color: #007bff;
+  font-family: "Algerian", serif;
 }
 
-.add-book-container form {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-book-input {
   width: 100%;
-  max-width: 400px;
 }
 
-.add-book-container input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
+.add-book-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.add-book-container input:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.add-book-container button {
-  width: 100%;
-  padding: 12px;
-  background: #007bff;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.add-book-container button:hover {
-  background: #0056b3;
-}
-
-.add-book-container button:active {
-  background: #004494;
+.add-book-buttons .MuiButton-root {
+  flex: 1;
+  margin: 0 8px;
 }
 
 @media (max-width: 768px) {
-  .add-book-container h2 {
-    font-size: 28px;
+  .add-book-card {
+    padding: 15px;
   }
 
-  .add-book-container form {
-    padding: 20px;
+  .add-book-title {
+    font-size: 24px;
   }
 
-  .add-book-container input {
+  .add-book-buttons .MuiButton-root {
     font-size: 14px;
-    padding: 10px;
-  }
-
-  .add-book-container button {
-    font-size: 16px;
-    padding: 10px;
   }
 }

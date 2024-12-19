@@ -3,68 +3,49 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background-color: #f4f4f4; */
     background-image: url("https://img.freepik.com/premium-photo/search-bar-icon-search-3d-render-minimal-design-multicolor-background_41204-14142.jpg?semt=ais_hybrid");
     background-size: cover;
+    background-position: center;
+    padding: 20px;
 }
 
 .auth-box {
-    background-color: #fff;
-    padding: 4rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    height: 100%;
-    max-height: 300px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
-.auth-box h2 {
-    margin-bottom: 1rem;
-    font-size: 24px;
+.auth-title {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px !important;
+    font-weight: 600 !important;
+    color: #007bff;
+    font-family: "Algerian", serif !important;
 }
 
-.auth-box form {
+.auth-form {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
 
-.auth-box input {
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.auth-input {
+    margin-bottom: 16px;
 }
 
-.auth-box button {
-    padding: 0.75rem;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.auth-box button:hover {
-    background-color: #0056b3;
-}
-
-.auth-box p {
-    margin-top: 1rem;
+.auth-text {
+    margin-top: 26px !important;
     text-align: center;
 }
 
-.auth-box a {
+.auth-text a {
     color: #007bff;
     text-decoration: none;
-    transition: color 0.3s;
 }
 
-.auth-box a:hover {
-    color: #0056b3;
+.auth-text a:hover {
+    text-decoration: underline;
 }

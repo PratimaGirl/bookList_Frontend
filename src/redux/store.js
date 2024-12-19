@@ -1,11 +1,9 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import { thunk } from "redux-thunk"; // Correctly import `thunk`
+import { thunk } from "redux-thunk";
 import authReducer from "./auth/authReducer";
-import bookReducer from "./books/bookReducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  book: bookReducer
 });
 
 const composeEnhancers =
@@ -13,7 +11,7 @@ const composeEnhancers =
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk)) // Use named import `thunk`
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;

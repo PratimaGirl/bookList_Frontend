@@ -5,17 +5,16 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-    console.log("Action received:", action); // Debug action
-    switch (action.type) {
-      case LOGIN_SUCCESS:
-        console.log("State updated:", { ...state, token: action.payload });
-        return { ...state, token: action.payload };
-      case LOGOUT:
-        return { ...state, token: null };
-      default:
-        return state;
-    }
-  };
-  
+  console.log("Action received:", action);
+  switch (action.type) {
+    case LOGIN_SUCCESS:
+      console.log("State updated:", { ...state, token: action.payload });
+      return { ...state, token: action.payload };
+    case LOGOUT:
+      return { ...state, token: null };
+    default:
+      return state;
+  }
+};
 
 export default authReducer;
