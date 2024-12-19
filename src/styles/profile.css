@@ -1,0 +1,100 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.profile-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Limit the container width */
+  margin: 0 auto;
+}
+
+.profile-icon {
+  width: 120px; /* Increased size for better visibility */
+  height: 120px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  width: 100%;
+  text-align: left; /* Align text to the left for better readability */
+  margin-top: 20px;
+}
+
+.profile-details label {
+  display: block;
+  margin: 8px 0 5px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.profile-details input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.button-profile {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%; /* Make button full width */
+}
+
+.button-profile:hover {
+  background-color: #218838;
+}
+
+.button-profile:focus {
+  outline: none;
+}
+
+.button-profile:active {
+  background-color: #1e7e34;
+}
+
+/* Style for the edit profile section */
+.profile-details p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.profile-details button {
+  width: auto; /* Keep the button size for editing the profile smaller */
+  margin-top: 15px;
+}
+
+/* Loading and User not found messages */
+.profile-container p {
+  font-size: 1.2rem;
+  color: #888;
+}

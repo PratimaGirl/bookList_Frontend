@@ -1,0 +1,92 @@
+.notifications {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notifications h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .notifications ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .notifications li {
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .notifications li.unread {
+    background-color: #e8f4fa; /* Light blue for unread notifications */
+  }
+  
+  .notifications li.read {
+    background-color: #f0f0f0; /* Light grey for read notifications */
+  }
+  
+  .notifications li:hover {
+    background-color: #e2f0fc; /* Slight hover effect */
+  }
+  
+  .notifications li small {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  .notifications li .mark-read {
+    font-size: 12px;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .notifications li .mark-read:hover {
+    text-decoration: underline;
+  }
+  
+
+  .close-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+  }
+  
+  .close-btn:hover {
+    color: #505050;
+  }
+
+  .clear-all-btn {
+    /* background-color: #f44336; */
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .clear-all-btn:hover {
+    background-color: #777474;
+  }
+
+  .notification-header {
+    display: flex;
+    justify-content: space-between; /* This will place the "Clear All" button on the right */
+    align-items: center;
+  }

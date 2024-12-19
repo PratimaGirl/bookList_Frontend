@@ -1,0 +1,14 @@
+/* components/admin/AdminLayout.css */
+.admin-layout {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .admin-content {
+    margin-left: 250px; /* Adjust to sidebar width */
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto;
+    background-color: #f3f4f6;
+  }
+  
