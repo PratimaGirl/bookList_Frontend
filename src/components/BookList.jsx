@@ -89,7 +89,7 @@ const BookList = () => {
   const handleDelete = (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       axios
-        .delete(`http://localhost:5000/api/books/${bookId}`)
+        .delete(config.apiBaseUrl + `/api/books/${bookId}`)
         .then(() => {
           setBooks(books.filter((book) => book._id !== bookId));
         })
@@ -104,7 +104,7 @@ const BookList = () => {
 
   const handleEditSave = () => {
     axios
-      .put(`http://localhost:5000/api/books/${currentBook._id}`, {
+      .put(config.apiBaseUrl + `/api/books/${currentBook._id}`, {
         title: currentBook.title,
         author: currentBook.author,
       })
